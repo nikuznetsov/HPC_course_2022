@@ -1,29 +1,5 @@
 fc00_enc_feature, fc00_enc_grad, fc00_enc, grad_fc00_enc +
 
-fc01_enc_feature, fc01_enc_grad, fc01_enc, grad_fc01_enc +
-
-fc10_enc_feature, fc10_enc_grad, fc10_enc, grad_fc10_enc +
-
-fc11_enc_feature, fc11_enc_grad, fc11_enc, grad_fc11_enc +
-
-fc20_enc_feature, fc20_enc_grad, fc20_enc, grad_fc20_enc +
-
-fc21_enc_feature, fc21_enc_grad, fc21_enc, grad_fc21_enc +
-
-fc00_dec_feature, fc00_dec_grad, fc00_dec, grad_fc00_dec +
-
-fc01_dec_feature, fc01_dec_grad, fc01_dec, grad_fc01_dec +
-
-fc10_dec_feature, fc10_dec_grad, fc10_dec, grad_fc10_dec +
-
-fc11_dec_feature, fc11_dec_grad, fc11_dec, grad_fc11_dec +
-
-fc20_dec_feature, fc20_dec_grad, fc20_dec, grad_fc20_dec +
-
-fc21_dec_feature, fc21_dec_grad, fc21_dec, grad_fc21_dec +
-
-fc_out_feature,   fc_out_grad,   fc_out,   grad_fc_out   +
-
 
 
  
