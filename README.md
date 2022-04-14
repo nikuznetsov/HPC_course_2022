@@ -23,7 +23,7 @@ Write an 1-2 page essay that covers these two questions:
 **Solution:** [Axisb.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/Axisb.c), 
               [LeastSquares.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/LeastSquares.c)
 
-## Homework 2 (MPI)
+## Homework 3 (MPI)
 
 1) Ping-Pong
 
