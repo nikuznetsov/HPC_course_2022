@@ -20,12 +20,13 @@ Write an 1-2 page essay that covers these two questions:
               
 2) write the programs
 
-**Solution:** to be done
+**Solution:** [Axisb.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/Axisb.c), 
+              [LeastSquares.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/LeastSquares.c)
 
 ## Homework 2 (MPI)
 
 1) Ping-Pong
-**Solution:** to be done
+**Solution:** [PingPong.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW3/PingPong.c)
 
 2) Cellular Automata 1-D
-**Solution:** to be done
+**Solution:** [CellAuto.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW3/CellAuto.c)
