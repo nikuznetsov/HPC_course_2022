@@ -71,6 +71,19 @@ int main()
 //
 //  matrix multiplication algorithm
 //
+    #pragma omp parallel
+    {
+        #pragma omp for 
+        for (int n = 0; n < N; ++n)
+        {
+            for (int i = 0; i < N; ++i)
+            {
+                for (int j = 0; j < N; ++j)
+                {
+                    C[i][j] += A[i][n] * B[n][j];
+                }
+            }
+        }
 
     end = clock();
 
