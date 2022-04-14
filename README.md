@@ -26,7 +26,9 @@ Write an 1-2 page essay that covers these two questions:
 ## Homework 2 (MPI)
 
 1) Ping-Pong
+
 **Solution:** [PingPong.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW3/PingPong.c)
 
 2) Cellular Automata 1-D
+
 **Solution:** [CellAuto.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW3/CellAuto.c)
