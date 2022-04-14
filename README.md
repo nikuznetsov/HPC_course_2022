@@ -1,5 +1,4 @@
-# HPC_course_2022
-High Performance Computing and Modern Architectures, Skoltech, 2022
+# High Performance Computing and Modern Architectures, Skoltech, 2022 (by Sergey Rykovanov)
 
 ## Homework 1 (Essay)
 Write an 1-2 page essay that covers these two questions:
