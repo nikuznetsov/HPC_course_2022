@@ -10,7 +10,7 @@ Write an 1-2 page essay that covers these two questions:
 **Solution:** [Essay file](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HPC_Essay_KuznetsovNV.pdf)
 
 ## Homework 2 (OpenMP)
-1) complete the provided code
+1) Complete the provided code
 
 **Solution:** [BugParFor.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/BugParFor.c), 
               [BugReduction.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/BugReduction.c), 
@@ -18,7 +18,7 @@ Write an 1-2 page essay that covers these two questions:
               [Pi.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/Pi.c),
               [Car.cpp](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/Car.cpp)
               
-2) write the programs
+2) Write the programs
 
 **Solution:** [Axisb.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/Axisb.c), 
               [LeastSquares.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW2/LeastSquares.c)
