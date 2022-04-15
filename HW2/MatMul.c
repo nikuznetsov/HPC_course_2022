@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 void zero_init_matrix(double ** matrix, size_t N)
 {
@@ -65,20 +66,21 @@ int main()
     rand_init_matrix(A, N);
     rand_init_matrix(B, N);
     zero_init_matrix(C, N);
-
+    
+    int i, j, n;
     start = clock();
 
 //
 //  matrix multiplication algorithm
 //
-    #pragma omp parallel
+    #pragma omp parallel private(i, j, n)
     {
         #pragma omp for 
-        for (int n = 0; n < N; ++n)
+        for (n = 0; n < N; ++n)
         {
-            for (int i = 0; i < N; ++i)
+            for (i = 0; i < N; ++i)
             {
-                for (int j = 0; j < N; ++j)
+                for (j = 0; j < N; ++j)
                 {
                     C[i][j] += A[i][n] * B[n][j];
                 }
