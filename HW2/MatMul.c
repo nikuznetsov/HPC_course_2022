@@ -51,11 +51,13 @@ void free_matrix(double ** matrix, size_t N)
 
 int main()
 {
-    const size_t N = 1000; // size of an array
+    const size_t N = 2500; // size of an array
 
-    clock_t start, end;   
+    double start, end;   
  
     double ** A, ** B, ** C; // matrices
+
+    int i, j ,n;
 
     printf("Starting:\n");
 
@@ -67,15 +69,12 @@ int main()
     rand_init_matrix(B, N);
     zero_init_matrix(C, N);
     
-    int i, j, n;
-    start = clock();
+    start = omp_get_wtime();
 
-//
-//  matrix multiplication algorithm
-//
-    #pragma omp parallel private(i, j, n)
+    // OpenMP Matrix Multiplication
+    #pragma omp parallel 
     {
-        #pragma omp for 
+        #pragma omp for private(i, j, n) schedule(static)
         for (n = 0; n < N; ++n)
         {
             for (i = 0; i < N; ++i)
@@ -86,10 +85,31 @@ int main()
                 }
             }
         }
+    }
+	
+    end = omp_get_wtime();
 
-    end = clock();
+    printf("Time elapsed (OpenMP): %f seconds.\n", (double)(end - start));
+    
+    zero_init_matrix(C, N);
 
-    printf("Time elapsed (ijn): %f seconds.\n", (double)(end - start) / CLOCKS_PER_SEC);
+    start = omp_get_wtime();
+
+    // Simple Matrix Multiplication
+    for (n = 0; n < N; ++n)
+    {
+        for (i = 0; i < N; ++i)
+	{
+	    for (j = 0; j < N; ++j)
+            {
+                C[i][j] += A[i][n] * B[n][j];
+            }
+        }
+    }
+
+    end = omp_get_wtime();
+
+    printf("Time elapsed (Without OpenMP): %f seconds.\n", (double)(end - start));
 
     free_matrix(A, N);
     free_matrix(B, N);
