@@ -79,7 +79,9 @@ void shift_omp(PPMImage &img){
 	    ++count;
 	}
     }
-    
+
+    omp_set_num_threads(N_THREADS);
+
     for (int shift = 0; shift <= MAX_SHIFTS; ++shift)
     {
         #pragma omp parallel for shared(R, G, B, img)
