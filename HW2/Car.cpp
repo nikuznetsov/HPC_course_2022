@@ -2,10 +2,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-// include omp header file here
+#include <omp.h>
 
 #define RGB_COMPONENT_COLOR 255
+#define N_THREADS 4
+#define FREQ 10
+#define MAX_SHIFTS 300
 
 struct PPMPixel {
     int red;
@@ -53,19 +55,84 @@ void writePPM(const char *filename, PPMImage & img){
     file.close();
 }
 
-//
-//write the function for shifting
-//
+void shift_omp(PPMImage &img){
+    
+    double ** R = (double **)malloc(sizeof(double *)*img.x);
+    double ** G = (double **)malloc(sizeof(double *)*img.x);
+    double ** B = (double **)malloc(sizeof(double *)*img.x);
 
+    for (int i = 0; i < img.x; ++i)
+    {
+        R[i] = (double *)malloc(img.y * sizeof(double));
+	G[i] = (double *)malloc(img.y * sizeof(double));
+        B[i] = (double *)malloc(img.y * sizeof(double));
+    }
+    
+    int count = 0;
+    for (int row = 0; row < img.y; ++row)
+    {
+        for (int column = 0; column < img.x; ++column)
+	{
+	    R[column][row] = img.data[count].red;
+	    G[column][row] = img.data[count].green;
+	    B[column][row] = img.data[count].blue;
+	    ++count;
+	}
+    }
+    
+    for (int shift = 0; shift <= MAX_SHIFTS; ++shift)
+    {
+        #pragma omp parallel for shared(R, G, B, img)
+        for (int row = 0; row < img.y; ++row)
+        {
+            for (int column = 0; column < img.x; ++column)
+	    {
+	        R[column][row] = R[(column + 1) % img.x][row];
+	        G[column][row] = G[(column + 1) % img.x][row];
+	        B[column][row] = B[(column + 1) % img.x][row];
+	    }
+        }
 
+	count = 0;
+	for (int row = 0; row < img.y; ++row)
+        {
+            for (int column = 0; column < img.x; ++column)
+            {
+                img.data[count].red = R[column][row];
+                img.data[count].green = G[column][row];
+                img.data[count].blue = B[column][row];
+                ++count;
+             }
+        }
+
+	if (shift % FREQ == 0)
+	{
+	    char name[sizeof "./pics/000.ppm"];
+	    sprintf(name, "./pics/%d.ppm", MAX_SHIFTS - shift);
+	    writePPM(name, img);
+	}
+    }
+
+    free(R);
+    free(G);
+    free(B);
+}
 
 int main(int argc, char *argv[]){
+    
     PPMImage image;
+    
+    double start, end;
+
     readPPM("car.ppm", image);
     
-    //
-    //write code here
-    //
-    writePPM("new_car.ppm", image);
+    start = omp_get_wtime();
+    shift_omp(image);
+    end = omp_get_wtime();
+
+    printf("Time elapsed: %.5f\n", (double)(end - start));
+
+    delete(image.data);
+
     return 0;
 }
