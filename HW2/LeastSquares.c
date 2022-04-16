@@ -6,13 +6,11 @@
 
 #define N_THREADS 4
 #define N 100
-#define LR 0.0001
-#define EPOCHS 1000
+#define LR 0.00001
+#define EPOCHS 5000
 
 int main()
 {     
-    int lower = -9, upper = 11;
-
     double * x, * y, * y_pred;
     double a, b, a_found = 0, b_found = 0;
     double start, end, eps, error, d_da = 0, d_db = 0;
@@ -24,15 +22,15 @@ int main()
 
     srand(time(NULL));  
     
-    a = 2 * (rand() % 100) / 50.0 - 1;
-    b = 3 * (rand() % 1000) / 500.0 - 2;
+    a = -15.0 + ( (double)rand() / ((double)RAND_MAX / 30.0) ); 
+    b = -15.0 + ( (double)rand() / ((double)RAND_MAX / 30.0) );
 
     //omp_set_num_threads(N_THREADS);
     //#pragma omp parallel for shared(x, y, a, b, eps)
     for (int i = 0; i < N; ++i)
     {   
-        x[i] = (double)(rand() % 1000) / 1000;
-	eps = (double)(2*(rand() % 1000) / 1000 - 1) / 10;
+        x[i] = 15.0 + ( (double)rand() / ((double)RAND_MAX / 85.0) );
+	eps = -0.1 + ( (double)rand() / ((double)RAND_MAX / 0.2) );
         y[i] = a * x[i] + b + eps;
     }
 
@@ -48,11 +46,11 @@ int main()
 	    d_db = d_db + (y[i] - y_pred[i]);
 	}
 
-	d_da = -2.0 / N * d_da;
-	d_db = -2.0 / N * d_db;
+	d_da = (-2.0 / (double)N) * d_da;
+	d_db = (-2.0 / (double)N) * d_db;
 
-	a_found = a_found - LR * d_da;
-	b_found = b_found - LR * d_db;
+	a_found = a_found - (double)LR * d_da;
+	b_found = b_found - (double)LR * d_db;
     }
     end = omp_get_wtime();
 
