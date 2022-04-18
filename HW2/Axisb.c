@@ -4,7 +4,7 @@
 #include <math.h>
 #include <time.h>
 
-#define N_THREADS 4 
+#define N_THREADS 8 
 #define TOL 0.000001
 #define N 2000
 #define MAX_ITER 5000
@@ -21,8 +21,8 @@ int main()
     {
         for (int j = 0; j < N; ++j) 
 	{
-	    if (i != j) A[i][j] = ((double)rand() / (double)(RAND_MAX)) * 9.0;
-	    else A[i][i] = ((double)rand() / (double)RAND_MAX) * 100.0;
+	    if (i != j) A[i][j] = -9.0 + ( (double)rand() / ((double)RAND_MAX / 18.0) );
+	    else A[i][i] = 20.0 + ( (double)rand() / ((double)RAND_MAX / 120.0) );
 	}
     }
 
@@ -30,7 +30,7 @@ int main()
     
     for (int i = 0; i < N; ++i) 
     {
-	b[i] = ((double)rand() / (double)RAND_MAX) * 20.0;
+	b[i] = ( (double)rand() / ((double)RAND_MAX / 20.0) );
     }
 
     double * x = (double *)calloc(N, sizeof(double));
@@ -44,15 +44,16 @@ int main()
         double error = 0.0, sigma;
 
 	#pragma omp parallel for shared(A, b, x, dx) \
-	   		         num_threads(N_THREADS) \
-	                         reduction(+:error, sigma) \
+	                         private(sigma) \
+	                         num_threads(N_THREADS) \
+	                         reduction(+:error) \
 	                         schedule(static)
-	for (int i = 0; i < N; ++i)
+	for (int i = 0; i < N; ++i) // loop is not perfectly nested can't use collapse
 	{ 
 	    dx[i] = b[i];
 	    sigma = 0.0;
             
-	    for (int j = 0; j < N; ++j)
+	    for (int j = 0; j < N; ++j) 
 	    {
 	        sigma = sigma + A[i][j] * x[j];
 	    }
@@ -74,11 +75,11 @@ int main()
     {
         for (int j = 0; j < N; j++) 
 	{
-	    if (j == 0) printf("| %2.f  ", A[i][j]);
-	    else if (j == N-1) printf("%2.f |  ", A[i][j]);
-	    else printf("%2.f  ", A[i][j]);
+	    if (j == 0) printf("| %.2f  ", A[i][j]);
+	    else if (j == N-1) printf("%.2f |  ", A[i][j]);
+	    else printf("%.2f  ", A[i][j]);
 	}
-	printf("| x%d |  =  | %2.f |\n", i+1, b[i]);
+	printf("| x%d |  =  | %.2f |\n", i+1, b[i]);
     }
 
     printf("\nSolution:\n");
