@@ -37,12 +37,12 @@ Write an 1-2 page essay that covers these two questions:
 
 1) Laplace equation
 
-**Solution:**
+**Solution:** [laplace.cu](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW4/laplace.cu)
 
 2) Filtering
 
-**Solution:**
+**Solution:** [filter.cu](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW4/filter.cu)
  
 3) Histogram
 
-**Solution:**
+**Solution:** [hist.cu](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW4/hist.cu)
