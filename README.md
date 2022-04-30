@@ -32,3 +32,17 @@ Write an 1-2 page essay that covers these two questions:
 2) Cellular Automata 1-D
 
 **Solution:** [CellAuto.c](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW3/CellAuto.c)
+
+## Homework 3 (CUDA)
+
+1) Laplace equation
+
+**Solution:**
+
+2) Filtering
+
+**Solution:**
+ 
+3) Histogram
+
+**Solution:**
