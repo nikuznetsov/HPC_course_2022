@@ -49,4 +49,4 @@ Write an 1-2 page essay that covers these two questions:
 
 ## Final Project
 
-Code for that project is [here](https://github.com/nikuznetsov/HPC_course_2022/tree/main/PROJECT).
+Code for the project is [here](https://github.com/nikuznetsov/HPC_course_2022/tree/main/PROJECT).
