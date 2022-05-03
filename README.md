@@ -37,7 +37,7 @@ Write an 1-2 page essay that covers these two questions:
 
 1) Laplace equation, Filtering, Histogram (one .ipynb file)
 
-**Solution:** [CUDA_HWs.ipynb](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW4/CUDA_HWs.ipynb)
+**Solution:** [CUDA_HW.ipynb](https://github.com/nikuznetsov/HPC_course_2022/blob/main/HW4/CUDA_HW.ipynb)
 
 ## Final Project
 
